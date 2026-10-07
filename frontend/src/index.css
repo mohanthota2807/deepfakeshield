@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #06090f;
+  color: #f1f5f9;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom restrained scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Print Styles for Digital Forensics Report */
+@media print {
+  header, aside, footer, button, input {
+    display: none !important;
+  }
+  body, main {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .bg-slate-900, .bg-slate-950 {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+  }
+  .text-slate-100, .text-slate-200, .text-slate-300 {
+    color: #0f172a !important;
+  }
+  .text-slate-400, .text-slate-500 {
+    color: #475569 !important;
+  }
+  .fixed.inset-0 {
+    position: static !important;
+    background: none !important;
+  }
+}
