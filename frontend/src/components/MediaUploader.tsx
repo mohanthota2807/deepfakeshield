@@ -52,7 +52,7 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
         }}
         onDragLeave={() => setIsDragging(false)}
         onDrop={handleDrop}
-        onClick={() => inputRef.current?.click()}
+  
         className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-all ${
           isDragging
             ? 'border-sky-500 bg-sky-950/20'
@@ -61,17 +61,24 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
             : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'
         }`}
       >
-        <input
-          ref={inputRef}
-          type="file"
-          accept={accept}
-          className="hidden"
-          onChange={(e) => {
-            if (e.target.files && e.target.files.length > 0) {
-              validateAndHandle(e.target.files[0]);
-            }
-          }}
-        />
+       
+<input
+  ref={inputRef}
+  type="file"
+  accept={accept}
+  className="hidden"
+  onChange={(e) => {
+    const file = e.currentTarget.files?.[0];
+
+    if (file) {
+      validateAndHandle(file);
+    }
+
+    // Allow selecting the same file again.
+    e.currentTarget.value = "";
+  }}
+/>
+
 
         <div className="flex flex-col items-center justify-center space-y-2">
           <div className="w-10 h-10 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300">
@@ -110,8 +117,18 @@ export const MediaUploader: React.FC<MediaUploaderProps> = ({
             <div className="space-y-1">
               <p className="text-sm font-medium text-slate-200">
                 Drag and drop your {mediaType} file here, or{' '}
-                <span className="text-sky-400 font-semibold underline underline-offset-2">browse files</span>
-              </p>
+             
+<button
+  type="button"
+  className="text-sky-400 font-semibold underline underline-offset-2"
+  onClick={(e) => {
+    e.stopPropagation();
+    inputRef.current?.click();
+  }}
+>
+  browse files
+</button>
+
               <p className="text-xs text-slate-400 font-mono">
                 Supported: {accept.replace(/\./g, '').toUpperCase()} • Maximum file size: {maxSizeMb} MB
               </p>
