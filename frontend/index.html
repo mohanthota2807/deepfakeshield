@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>DeepFakeShield — AI Media Forensics Platform</title>
   <meta name="description" content="AI-powered media forensics platform that analyzes images, videos, and audio to detect synthetic manipulation, deepfakes, and voice cloning." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -173,6 +176,8 @@
           </div>
         </div>
       );
+    };
+
     // --- DRAG & DROP MEDIA UPLOADER COMPONENT ---
     const MediaUploader = ({
       mediaType = 'image',
@@ -780,9 +785,6 @@
             created_at: new Date().toISOString()
           };
           setAudState(s => ({ ...s, processing: false, stage: '', result: res }));
-          setHistory(h => [res, ...h.filter(x => x.id !== res.id)]);
-        }, 1200);
-      };
           setHistory(h => [res, ...h.filter(x => x.id !== res.id)]);
         }, 1200);
       };
